@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MovementSFX_Resource" load_steps=20 format=3 uid="uid://c2dvlwe4ywpe1"]
+
+[ext_resource type="Script" path="res://Audio/Footsteps/FootstepSFX_Resource.gd" id="1_2hios"]
+[ext_resource type="AudioStream" uid="uid://dqx4gm1o7bq1" path="res://Audio/Footsteps/Stone/StoneJump_1.wav" id="1_dq681"]
+[ext_resource type="AudioStream" uid="uid://bri1omuwfg3oo" path="res://Audio/Footsteps/Wood/WoodRun_1.wav" id="1_t7nut"]
+[ext_resource type="AudioStream" uid="uid://dxc3chgvmp4tu" path="res://Audio/Footsteps/Wood/WoodRun_2.wav" id="2_7bbwg"]
+[ext_resource type="AudioStream" uid="uid://by3egl883qo7p" path="res://Audio/Footsteps/Stone/StoneJump_2.wav" id="2_wefiw"]
+[ext_resource type="AudioStream" uid="uid://cw654eqg71xkl" path="res://Audio/Footsteps/Wood/WoodRun_3.wav" id="3_ail7p"]
+[ext_resource type="AudioStream" uid="uid://su20fgk106ac" path="res://Audio/Footsteps/Stone/StoneJump_3.wav" id="3_b5ito"]
+[ext_resource type="AudioStream" uid="uid://c00rlfi8ro2jy" path="res://Audio/Footsteps/Wood/WoodRun_4.wav" id="4_82pgn"]
+[ext_resource type="AudioStream" uid="uid://bjyg0sh6r87lq" path="res://Audio/Footsteps/Stone/StoneJump_4.wav" id="4_wyiml"]
+[ext_resource type="AudioStream" uid="uid://cki6fa183x1ga" path="res://Audio/Footsteps/Wood/WoodRun_5.wav" id="5_84a6a"]
+[ext_resource type="AudioStream" uid="uid://xw4rbkkff7pc" path="res://Audio/Footsteps/Stone/StoneLand_1.wav" id="5_nti6n"]
+[ext_resource type="AudioStream" uid="uid://c1qw5e5mpvh8x" path="res://Audio/Footsteps/Wood/WoodWalk_1.wav" id="6_6k1lo"]
+[ext_resource type="AudioStream" uid="uid://h1lfiaoqhbjf" path="res://Audio/Footsteps/Stone/StoneLand_2.wav" id="6_kt8sv"]
+[ext_resource type="AudioStream" uid="uid://daid3yyudye5i" path="res://Audio/Footsteps/Stone/StoneLand_3.wav" id="7_7resb"]
+[ext_resource type="AudioStream" uid="uid://nfsgcrbpg153" path="res://Audio/Footsteps/Wood/WoodWalk_2.wav" id="7_o6yl4"]
+[ext_resource type="AudioStream" uid="uid://k53k4hlk0kq4" path="res://Audio/Footsteps/Stone/StoneLand_4.wav" id="8_emb4d"]
+[ext_resource type="AudioStream" uid="uid://k3w7tyu1gy1e" path="res://Audio/Footsteps/Wood/WoodWalk_3.wav" id="8_uk33k"]
+[ext_resource type="AudioStream" uid="uid://dltgfpnpk3u4h" path="res://Audio/Footsteps/Wood/WoodWalk_4.wav" id="9_522pp"]
+[ext_resource type="AudioStream" uid="uid://dni236uuqwk2p" path="res://Audio/Footsteps/Wood/WoodWalk_5.wav" id="10_fgy8f"]
+
+[resource]
+script = ExtResource("1_2hios")
+Name = "Wood"
+Walking_Sound = Array[AudioStreamWAV]([ExtResource("6_6k1lo"), ExtResource("7_o6yl4"), ExtResource("8_uk33k"), ExtResource("9_522pp"), ExtResource("10_fgy8f")])
+Running_Sound = Array[AudioStreamWAV]([ExtResource("1_t7nut"), ExtResource("2_7bbwg"), ExtResource("3_ail7p"), ExtResource("4_82pgn"), ExtResource("5_84a6a")])
+Jump_Sound = Array[AudioStreamWAV]([ExtResource("1_dq681"), ExtResource("2_wefiw"), ExtResource("3_b5ito"), ExtResource("4_wyiml")])
+Landing_Sound = Array[AudioStreamWAV]([ExtResource("5_nti6n"), ExtResource("6_kt8sv"), ExtResource("7_7resb"), ExtResource("8_emb4d")])

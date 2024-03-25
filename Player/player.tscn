@@ -1,0 +1,144 @@
+[gd_scene load_steps=15 format=3 uid="uid://28rdy6g7u1x2"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_fpb81"]
+[ext_resource type="Script" path="res://Player/WeaponSystem.gd" id="2_dlgif"]
+[ext_resource type="Resource" uid="uid://bpf5vp5208qg1" path="res://Weapons/Weapon_resources/LongSword.tres" id="3_ecano"]
+[ext_resource type="Script" path="res://Player/FloorMaterialRay.gd" id="3_qxqhn"]
+[ext_resource type="Resource" uid="uid://citdprri6cdh7" path="res://Audio/Footsteps/Stone.tres" id="4_ya5eq"]
+[ext_resource type="Resource" uid="uid://c2dvlwe4ywpe1" path="res://Audio/Footsteps/Wood.tres" id="6_c0km0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_22jn1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s5yrf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ihbxh"]
+radius = 0.03
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0lc7e"]
+radius = 0.3
+height = 1.37
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l5ind"]
+radius = 0.03
+height = 0.4
+
+[sub_resource type="Animation" id="Animation_ik8tx"]
+resource_name = "LongSword_Deactivate"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.387958, 0.860625, 0.217117), Vector3(-1.1063, 0.860625, 0.217117), Vector3(-1.21489, 0.114071, 0.167729)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(0.840563, 2.20454, -2.75765), Vector3(0.467748, 3.13112, -2.97928), Vector3(1.14494, 3.12065, -2.96531)]
+}
+
+[sub_resource type="Animation" id="Animation_wnmb7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yfrb"]
+_data = {
+"LongSword_Deactivate": SubResource("Animation_ik8tx"),
+"RESET": SubResource("Animation_wnmb7")
+}
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_fpb81")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_22jn1")
+
+[node name="PlayerCollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_s5yrf")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.610528, 0)
+
+[node name="WeaponSystem" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.701273, -0.806519, -0.699941)
+script = ExtResource("2_dlgif")
+_weapon_resources = Array[Resource("res://Weapons/Weapon_resource.gd")]([ExtResource("3_ecano")])
+Start_Weapons = Array[String](["Long_Sword"])
+
+[node name="FPS_rig" type="Node3D" parent="Head/Camera3D/WeaponSystem"]
+transform = Transform3D(1, 0, 0, 0, 0.969621, 0.244614, 0, -0.244614, 0.969621, 0, 0, 0)
+
+[node name="Sword" type="Node3D" parent="Head/Camera3D/WeaponSystem/FPS_rig"]
+
+[node name="BladeMeshInstance3D" type="MeshInstance3D" parent="Head/Camera3D/WeaponSystem/FPS_rig/Sword"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685, 0)
+mesh = SubResource("CapsuleMesh_ihbxh")
+
+[node name="SwordHurtBox" type="Area3D" parent="Head/Camera3D/WeaponSystem/FPS_rig/Sword/BladeMeshInstance3D"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Camera3D/WeaponSystem/FPS_rig/Sword/BladeMeshInstance3D/SwordHurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+shape = SubResource("CapsuleShape3D_0lc7e")
+
+[node name="CrossGuardMeshInstance3D" type="MeshInstance3D" parent="Head/Camera3D/WeaponSystem/FPS_rig/Sword"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.203285, 0)
+mesh = SubResource("CapsuleMesh_l5ind")
+
+[node name="WeaponAnimationPlayer" type="AnimationPlayer" parent="Head/Camera3D/WeaponSystem/FPS_rig"]
+libraries = {
+"": SubResource("AnimationLibrary_2yfrb")
+}
+
+[node name="MovementStepAudio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.933297, 0)
+
+[node name="FloorMaterialRay" type="RayCast3D" parent="." node_paths=PackedStringArray("player")]
+target_position = Vector3(0, -5, 0)
+script = ExtResource("3_qxqhn")
+player = NodePath("..")
+resources = Array[Resource("res://Audio/Footsteps/FootstepSFX_Resource.gd")]([ExtResource("4_ya5eq"), ExtResource("6_c0km0")])

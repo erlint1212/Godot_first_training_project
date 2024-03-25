@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MovementSFX_Resource" load_steps=20 format=3 uid="uid://citdprri6cdh7"]
+
+[ext_resource type="Script" path="res://Audio/Footsteps/FootstepSFX_Resource.gd" id="1_1tm4m"]
+[ext_resource type="AudioStream" uid="uid://dqx4gm1o7bq1" path="res://Audio/Footsteps/Stone/StoneJump_1.wav" id="1_2ptro"]
+[ext_resource type="AudioStream" uid="uid://cr6gu1ftmohm3" path="res://Audio/Footsteps/Stone/StoneRun_1.wav" id="1_sho2t"]
+[ext_resource type="AudioStream" uid="uid://dkf03vgu8fo3s" path="res://Audio/Footsteps/Stone/StoneRun_2.wav" id="2_0f7pl"]
+[ext_resource type="AudioStream" uid="uid://by3egl883qo7p" path="res://Audio/Footsteps/Stone/StoneJump_2.wav" id="2_sy0he"]
+[ext_resource type="AudioStream" uid="uid://su20fgk106ac" path="res://Audio/Footsteps/Stone/StoneJump_3.wav" id="3_k44m8"]
+[ext_resource type="AudioStream" uid="uid://c4jbax8hevbw8" path="res://Audio/Footsteps/Stone/StoneRun_3.wav" id="3_oqe54"]
+[ext_resource type="AudioStream" uid="uid://dup4uxv6ifh3c" path="res://Audio/Footsteps/Stone/StoneRun_4.wav" id="4_u3bf1"]
+[ext_resource type="AudioStream" uid="uid://bjyg0sh6r87lq" path="res://Audio/Footsteps/Stone/StoneJump_4.wav" id="4_x2yk1"]
+[ext_resource type="AudioStream" uid="uid://xw4rbkkff7pc" path="res://Audio/Footsteps/Stone/StoneLand_1.wav" id="5_1hgyl"]
+[ext_resource type="AudioStream" uid="uid://c0yn58nkv6cxf" path="res://Audio/Footsteps/Stone/StoneRun_5.wav" id="5_etdgp"]
+[ext_resource type="AudioStream" uid="uid://c6ujr6t8e1o8w" path="res://Audio/Footsteps/Stone/StoneWalk_1.wav" id="6_3uojl"]
+[ext_resource type="AudioStream" uid="uid://h1lfiaoqhbjf" path="res://Audio/Footsteps/Stone/StoneLand_2.wav" id="6_m7hs7"]
+[ext_resource type="AudioStream" uid="uid://dfm03bj6n2lyo" path="res://Audio/Footsteps/Stone/StoneWalk_2.wav" id="7_6na6s"]
+[ext_resource type="AudioStream" uid="uid://daid3yyudye5i" path="res://Audio/Footsteps/Stone/StoneLand_3.wav" id="7_wnd0c"]
+[ext_resource type="AudioStream" uid="uid://k53k4hlk0kq4" path="res://Audio/Footsteps/Stone/StoneLand_4.wav" id="8_8bcdf"]
+[ext_resource type="AudioStream" uid="uid://cvc6yeokvel2a" path="res://Audio/Footsteps/Stone/StoneWalk_3.wav" id="8_843un"]
+[ext_resource type="AudioStream" uid="uid://cl85xhp1vqgwp" path="res://Audio/Footsteps/Stone/StoneWalk_4.wav" id="9_c12bk"]
+[ext_resource type="AudioStream" uid="uid://b04xfsp1khhab" path="res://Audio/Footsteps/Stone/StoneWalk_5.wav" id="10_tpsdx"]
+
+[resource]
+script = ExtResource("1_1tm4m")
+Name = "Stone"
+Walking_Sound = Array[AudioStreamWAV]([ExtResource("6_3uojl"), ExtResource("7_6na6s"), ExtResource("8_843un"), ExtResource("9_c12bk"), ExtResource("10_tpsdx")])
+Running_Sound = Array[AudioStreamWAV]([ExtResource("1_sho2t"), ExtResource("2_0f7pl"), ExtResource("3_oqe54"), ExtResource("4_u3bf1"), ExtResource("5_etdgp")])
+Jump_Sound = Array[AudioStreamWAV]([ExtResource("1_2ptro"), ExtResource("2_sy0he"), ExtResource("3_k44m8"), ExtResource("4_x2yk1")])
+Landing_Sound = Array[AudioStreamWAV]([ExtResource("5_1hgyl"), ExtResource("6_m7hs7"), ExtResource("7_wnd0c"), ExtResource("8_8bcdf")])

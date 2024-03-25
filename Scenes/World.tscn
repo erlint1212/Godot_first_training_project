@@ -1,0 +1,111 @@
+[gd_scene load_steps=20 format=3 uid="uid://ch6hhit6wjtmh"]
+
+[ext_resource type="Texture2D" uid="uid://ba2s3sm46a3n8" path="res://Texture/Sky/belfast_sunset_puresky_4k.exr" id="1_ueg5h"]
+[ext_resource type="PackedScene" uid="uid://28rdy6g7u1x2" path="res://Player/player.tscn" id="1_yoeh1"]
+[ext_resource type="Texture2D" uid="uid://di883p21tvj6h" path="res://Texture/Floor/Wood/wood_floor_diff_1k.png" id="3_pk1hs"]
+[ext_resource type="Texture2D" uid="uid://62wryl2tkx78" path="res://Texture/Floor/Wood/wood_floor_ao_1k.png" id="4_7hv8d"]
+[ext_resource type="Texture2D" uid="uid://b0ptxgxnef4un" path="res://Texture/Floor/Wood/wood_floor_disp_1k.png" id="5_5lubj"]
+[ext_resource type="Texture2D" uid="uid://b6e7na38hivdi" path="res://Texture/Floor/Wood/wood_floor_nor_gl_1k.png" id="6_l40tx"]
+[ext_resource type="Texture2D" uid="uid://bsbtkk76jd7pm" path="res://Texture/Floor/Wood/wood_floor_rough_1k.png" id="7_7s1wf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ujj3"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_cover = ExtResource("1_ueg5h")
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_iakqe"]
+sky_material = SubResource("ProceduralSkyMaterial_6ujj3")
+
+[sub_resource type="Environment" id="Environment_2ueqv"]
+background_mode = 2
+background_energy_multiplier = 0.09
+sky = SubResource("Sky_iakqe")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_density = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ripic"]
+albedo_color = Color(0.282353, 0.282353, 0.282353, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jant4"]
+material = SubResource("StandardMaterial3D_ripic")
+size = Vector2(500, 500)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bb2p2"]
+data = PackedVector3Array(250, 0, 250, -250, 0, 250, 250, 0, -250, -250, 0, 250, -250, 0, -250, 250, 0, -250)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdemh"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 4.52
+
+[sub_resource type="SphereMesh" id="SphereMesh_y4so0"]
+material = SubResource("StandardMaterial3D_mdemh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b5q8"]
+albedo_texture = ExtResource("3_pk1hs")
+roughness_texture = ExtResource("7_7s1wf")
+normal_enabled = true
+normal_texture = ExtResource("6_l40tx")
+ao_enabled = true
+ao_texture = ExtResource("4_7hv8d")
+heightmap_enabled = true
+heightmap_texture = ExtResource("5_5lubj")
+uv1_scale = Vector3(3, 3, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5clsy"]
+material = SubResource("StandardMaterial3D_5b5q8")
+size = Vector2(10, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ph6uu"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iylkn"]
+size = Vector2(40, 40)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2ueqv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.799548, 0.520137, -0.300301, -8.33638e-09, 0.5, 0.866025, 0.600602, -0.692429, 0.399774, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_jant4")
+
+[node name="StoneStaticBody3D" type="StaticBody3D" parent="Floor" groups=["Stone"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StoneStaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_bb2p2")
+
+[node name="RedBall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.03844, 3.36203, 0)
+mesh = SubResource("SphereMesh_y4so0")
+
+[node name="Player" parent="." instance=ExtResource("1_yoeh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.346979, 1.79145, -2.71008)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(40, 10, 40)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+operation = 2
+size = Vector3(38, 10, 38)
+
+[node name="Wooden_Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0158, 0.0762835, 14.1531)
+mesh = SubResource("PlaneMesh_5clsy")
+
+[node name="WoodStaticBody3D" type="StaticBody3D" parent="Wooden_Floor" groups=["Wood"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wooden_Floor/WoodStaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ph6uu")
+
+[node name="GrassPatch" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0.025, 0)
+mesh = SubResource("PlaneMesh_iylkn")
+skeleton = NodePath(".")
